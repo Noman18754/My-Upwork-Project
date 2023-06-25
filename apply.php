@@ -9,11 +9,6 @@ if(isset($_SESSION['username'])){
     header("Location:index.php");
 }
    
-// $query = "SELECT * FROM  job_posts";
-// $run   = mysqli_query($conn,$query);
-// if($value = mysqli_fetch_array($run)){ 
-//     $_SESSION['author'] = $value['username'];  
-// }    
 if(isset($_POST['apply'])){ 
       $discription = $_POST['job_discription']; 
       $resume        = $_FILES['resume']['name'];
@@ -21,8 +16,7 @@ if(isset($_POST['apply'])){
       $path        = 'upload_images/'.$resume ;
       move_uploaded_file($resume , $path);
       $price       = $_POST['price'];   
-      $username  = $_SESSION['username']; 
-    //   $author   = $_SESSION['author'];
+      $username  = $_SESSION['username'];  
       $query = "INSERT INTO `apply`(`job_discription`, `resume`, `price`, `username`) 
       VALUES ('$discription','$resume','$price','$username')";
       $data = mysqli_query($conn, $query); 
